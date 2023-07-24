@@ -5,6 +5,7 @@ export PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/opt/aw
 echo "Pritunl Installing"
 yum update -y
 
+# shellcheck disable=SC2129
 echo "* hard nofile 64000" >> /etc/security/limits.conf
 echo "* soft nofile 64000" >> /etc/security/limits.conf
 echo "root hard nofile 64000" >> /etc/security/limits.conf

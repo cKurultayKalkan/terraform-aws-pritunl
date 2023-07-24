@@ -2,3 +2,5 @@
 *.tfstate.backup
 
 .terraform/
+.idea
+.DS_Store

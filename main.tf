@@ -32,12 +32,12 @@ resource "aws_instance" "pritunl" {
   subnet_id                   = var.public_subnet_id
   associate_public_ip_address = false
 
-  tags = "${
-    merge(
-      map("Name", format("%s-%s", var.resource_name_prefix, "vpn")),
+  tags = merge(
+      tomap({
+        "Name" : format("%s-%s", var.resource_name_prefix, "vpn")
+      }),
       var.tags,
     )
-  }"
 
   provisioner "remote-exec" {
     inline = [
@@ -66,6 +66,6 @@ data "aws_instance" "pritunl_loaded" {
 }
 
 resource "aws_eip" "pritunl" {
-  instance = "${aws_instance.pritunl.id}"
+  instance = aws_instance.pritunl.id
   vpc      = true
 }
